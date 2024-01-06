@@ -7,10 +7,10 @@ Basic skeleton implementation of UI testing framework with Java + Playwright + J
 - JDK 17
 - Maven 3.6
 
-- Playwright - Testing Framework
-- jUnit5 - Jupiter - Test runner
-- Spring - Dependency Injection
-- Allure - reporting
+- [Playwright](https://playwright.dev/java/) - Testing Framework
+- [jUnit5](https://junit.org/junit5/) - Jupiter - Test runner
+- [Spring](https://spring.io/) - Dependency Injection
+- [Allure](https://allurereport.org/) - reporting
 
 ## How to run tests
 
