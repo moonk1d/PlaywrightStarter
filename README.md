@@ -26,12 +26,12 @@ Run from root folder:
 
 ```shell
  $ mvn -f frontend-tests/pom.xml -Denv=qa  
- ```
+```
 
 Run from root folder `frontend-tests` folder:
 
 ```shell
- $ mvn clean test -Denv=qa"  
+ $ mvn clean test -Denv=qa  
 ```
 
 ### With IDE(IntelliJ)
@@ -73,7 +73,15 @@ resources directories.
     - application-XXXX.properties - by adding properties files with env name suffix (XXXX) there is
       possibility to run test against any environment by specifying -Denv=XXXX VM param
 - allure.properties - configuration for Allure report, i.e. TMS links or results directory
+- junit-platform.properties - junit configuration
 - logback.xml - logger configuration with pattern and custom appender (see bellow)
+
+### Parallel test execution
+
+The design supports running tests in parallel. Just
+set `junit.jupiter.execution.parallel.enabled=true` in `junit-platform.properties`
+See [writing-tests-parallel-execution](https://junit.org/junit5/docs/snapshot/user-guide/#writing-tests-parallel-execution)
+for advanced configuration
 
 ## Maven configuration
 

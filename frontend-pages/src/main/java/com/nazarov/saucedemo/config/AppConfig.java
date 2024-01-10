@@ -15,6 +15,8 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource({"classpath:application-${env:dev}.properties"})
 public class AppConfig {
 
+  private static AppConfig config;
+
   @Value("${baseUri}")
   private String baseUri;
 
@@ -35,5 +37,13 @@ public class AppConfig {
 
   @Value("${pw.locator.timeout}")
   private Double locatorTimeout;
+
+  public AppConfig() {
+    AppConfig.config = this;
+  }
+
+  public static AppConfig get() {
+    return config;
+  }
 
 }

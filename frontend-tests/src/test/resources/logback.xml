@@ -5,17 +5,10 @@
     </encoder>
   </appender>
 
-  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-    <file>target/logs/testFile.log</file>
-    <append>false</append>
-    <immediateFlush>true</immediateFlush>
-    <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-    </encoder>
-  </appender>
+  <appender name="threadsafe-appender" class="com.nazarov.saucedemo.appender.LogThreadSafeAppender"/>
 
   <root level="info">
     <appender-ref ref="STDOUT"/>
-    <appender-ref ref="FILE"/>
+    <appender-ref ref="threadsafe-appender"/>
   </root>
 </configuration>

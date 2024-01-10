@@ -1,6 +1,7 @@
 package com.nazarov.saucedemo.extensions;
 
-import com.nazarov.saucedemo.PW;
+import com.nazarov.saucedemo.PlaywrightManager;
+import com.nazarov.saucedemo.config.AppConfig;
 import io.qameta.allure.Allure;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -14,16 +15,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @Slf4j
 public class VideoExt implements AfterEachCallback {
 
   @Override
   public void afterEach(ExtensionContext context) throws Exception {
-    PW pw = SpringExtension.getApplicationContext(context).getBean(PW.class);
-    if (Boolean.TRUE.equals(pw.getConfig().getRecordVideo())) {
-      File dir = new File(pw.getVideoPath());
+    if (Boolean.TRUE.equals(AppConfig.get().getRecordVideo())) {
+      File dir = new File(PlaywrightManager.getVideoPath());
 
       if (context.getExecutionException().isPresent()) {
         List<File> videos = Arrays.asList(Objects.requireNonNull(dir.listFiles()));
@@ -39,6 +38,7 @@ public class VideoExt implements AfterEachCallback {
         });
       }
       FileUtils.deleteDirectory(dir);
+      PlaywrightManager.cleanVideoPath();
     }
   }
 }
