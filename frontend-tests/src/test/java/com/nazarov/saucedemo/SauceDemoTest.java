@@ -1,6 +1,7 @@
 package com.nazarov.saucedemo;
 
 import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Page;
 import com.nazarov.saucedemo.pages.LoginPage;
 import com.nazarov.saucedemo.pages.ProductsPage;
 import com.nazarov.saucedemo.pages.components.InventoryItem;
@@ -11,6 +12,15 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 class SauceDemoTest extends TestFixture {
 
+  @Test
+  void browserContextTest() {
+    LoginPage loginPage = new LoginPage(page).open();
+    log.info("Open new browser tab");
+    Page newPage = PlaywrightManager.getBrowserContext().newPage();
+    log.info("Switch to initial tab");
+    page.bringToFront();
+    newPage.close();
+  }
   @Test
   void expectedTestPass() {
     // pass
@@ -48,7 +58,7 @@ class SauceDemoTest extends TestFixture {
   }
 
   @Test
-  void pageComponent() {
+  void pageComponentTest() {
     // pass
     LoginPage loginPage = new LoginPage(page).open();
     loginPage.login("standard_user", "secret_sauce");

@@ -12,10 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 @SpringJUnitConfig(AppConfig.class)
-//@ExtendWith({ScreenshotExt.class, VideoExt.class, LogExt.class})
-@ExtendWith(ScreenshotExt.class)
-@ExtendWith(LogExt.class)
-@ExtendWith(VideoExt.class)
+@ExtendWith({ScreenshotExt.class, VideoExt.class, LogExt.class})
 @Slf4j
 public class TestFixture {
 
