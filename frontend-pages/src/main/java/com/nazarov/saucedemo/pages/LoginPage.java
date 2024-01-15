@@ -4,15 +4,14 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 @Slf4j
 @Getter
 public class LoginPage extends SauceDemoPage {
 
-  private Locator usernameInput;
-  private Locator passwordInput;
-  private Locator loginButton;
+  private final Locator usernameInput;
+  private final Locator passwordInput;
+  private final Locator loginButton;
 
   public LoginPage(Page page) {
     super(page);
@@ -24,7 +23,7 @@ public class LoginPage extends SauceDemoPage {
   @Override
   public LoginPage open() {
     log.info("Open {} page", this.getClass().getName());
-    page.navigate("https://www.saucedemo.com/");
+    page.navigate(BASE_URL);
     return this;
   }
 

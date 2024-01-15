@@ -11,8 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 public class ProductsPage extends SauceDemoPage {
 
-  private Locator title;
-  private List<InventoryItem> inventoryItems;
+  private final Locator title;
+  private final List<InventoryItem> inventoryItems;
 
   public ProductsPage(Page page) {
     super(page);
@@ -25,8 +25,7 @@ public class ProductsPage extends SauceDemoPage {
 
   @Override
   public ProductsPage open() {
-    page.navigate(
-        "https://www.saucedemo.com/inventory.html"); // TODO add mature routing implementation
+    page.navigate(BASE_URL + "/inventory.html");
     return this;
   }
 }

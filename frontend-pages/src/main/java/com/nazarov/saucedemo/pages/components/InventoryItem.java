@@ -1,7 +1,6 @@
 package com.nazarov.saucedemo.pages.components;
 
 import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -10,11 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 public class InventoryItem {
 
-  private Locator image;
-  private Locator title;
-  private Locator description;
-  private Locator price;
-  private Locator addCartButton;
+  private final Locator image;
+  private final Locator title;
+  private final Locator description;
+  private final Locator price;
+  private final Locator addCartButton;
 
   public InventoryItem(Locator locator) {
     image = locator.locator("//div[@class='inventory_item_img']");
