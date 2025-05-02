@@ -25,13 +25,13 @@ variable `env=qa`
 Run from root folder:
 
 ```shell
- $ mvn -f frontend-tests/pom.xml -Denv=qa  
+mvn -f frontend-tests/pom.xml clean test -Denv=qa  
 ```
 
-Run from root folder `frontend-tests` folder:
+Run from `frontend-tests` folder:
 
 ```shell
- $ mvn clean test -Denv=qa  
+mvn clean test -Denv=qa  
 ```
 
 ### With IDE(IntelliJ)
