@@ -6,9 +6,9 @@ import ch.qos.logback.core.AppenderBase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogThreadSafeAppender extends AppenderBase<ILoggingEvent> {
+public class ApplicationLogAppender extends AppenderBase<ILoggingEvent> {
 
-  static ThreadLocal<List<String>> threadLocal = new ThreadLocal<>();
+  private static final ThreadLocal<List<String>> threadLocal = new ThreadLocal<>();
   private final PatternLayout layout = new PatternLayout();
 
   @Override

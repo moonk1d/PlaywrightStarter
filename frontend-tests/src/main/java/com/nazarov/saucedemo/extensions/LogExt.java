@@ -1,31 +1,36 @@
 package com.nazarov.saucedemo.extensions;
 
-import static java.util.Objects.nonNull;
-
-import com.nazarov.saucedemo.appender.LogThreadSafeAppender;
-import io.qameta.allure.Allure;
-import java.io.ByteArrayInputStream;
-import java.util.List;
-import lombok.extern.slf4j.Slf4j;
+import com.microsoft.playwright.Page;
+import com.nazarov.saucedemo.PlaywrightManager;
+import com.nazarov.saucedemo.appender.BrowserConsoleLogAppender;
+import com.nazarov.saucedemo.appender.BrowserNetworkAppender;
+import com.nazarov.saucedemo.utils.AllureLogAttachment;
+import com.nazarov.saucedemo.utils.ApplicationLogManager;
+import com.nazarov.saucedemo.utils.ConsoleLogManager;
+import com.nazarov.saucedemo.utils.NetworkLogManager;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
-@Slf4j
 public class LogExt implements BeforeEachCallback, AfterEachCallback {
+
+  private final ApplicationLogManager applicationLogManager = new ApplicationLogManager();
+  private final ConsoleLogManager consoleLogManager = new ConsoleLogManager();
+  private final NetworkLogManager networkLogManager = new NetworkLogManager();
+  private final AllureLogAttachment allureLogAttachment = new AllureLogAttachment();
 
   @Override
   public void beforeEach(ExtensionContext extensionContext) {
-    LogThreadSafeAppender.clearEvents();
+    Page page = PlaywrightManager.getPage();
+    page.onConsoleMessage(BrowserConsoleLogAppender::append);
+    page.onRequest(BrowserNetworkAppender::append);
+    page.onResponse(BrowserNetworkAppender::append);
   }
 
   @Override
   public void afterEach(ExtensionContext extensionContext) {
-    List<String> events = LogThreadSafeAppender.getEvents();
-    byte[] log = "Log output is empty".getBytes();
-    if (nonNull(events)) {
-      log = String.join("", events).getBytes();
-    }
-    Allure.addAttachment("log", "text/plain", new ByteArrayInputStream(log), ".log");
+    allureLogAttachment.attachLog("ApplicationLog", applicationLogManager.getApplicationLog());
+    allureLogAttachment.attachLog("BrowserConsoleLog", consoleLogManager.getConsoleLog());
+    allureLogAttachment.attachLog("BrowserNetworkLog", networkLogManager.getNetworkLog());
   }
 }

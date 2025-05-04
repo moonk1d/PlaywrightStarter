@@ -5,7 +5,7 @@
     </encoder>
   </appender>
 
-  <appender name="threadsafe-appender" class="com.nazarov.saucedemo.appender.LogThreadSafeAppender"/>
+  <appender name="threadsafe-appender" class="com.nazarov.saucedemo.appender.ApplicationLogAppender"/>
 
   <root level="info">
     <appender-ref ref="STDOUT"/>
