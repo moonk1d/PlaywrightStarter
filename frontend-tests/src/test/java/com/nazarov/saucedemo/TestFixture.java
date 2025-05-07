@@ -19,12 +19,12 @@ public class TestFixture {
   protected Page page;
 
   @BeforeEach
-  public void beforeEach() {
+  void beforeEach() {
     page = PlaywrightManager.getPage();
   }
 
   @AfterEach
-  public void afterEach() {
+  void afterEach() {
     PlaywrightManager.closePage();
   }
 
