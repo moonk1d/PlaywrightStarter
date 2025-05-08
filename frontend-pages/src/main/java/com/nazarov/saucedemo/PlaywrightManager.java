@@ -90,7 +90,7 @@ public final class PlaywrightManager {
   }
 
   public static void cleanTracePath() {
-    VIDEO_PATH.remove();
+    TRACE_PATH.remove();
     log.info("Trace path cleaned");
   }
 
