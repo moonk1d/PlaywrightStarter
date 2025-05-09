@@ -35,6 +35,15 @@ public class AppConfig {
   @Value("${pw.video.record}")
   private Boolean recordVideo;
 
+  @Value("${pw.trace.record}")
+  private Boolean recordTrace;
+
+  @Value("${pw.screenshot.record}")
+  private Boolean recordScreenshot;
+
+  @Value("${pw.log.record}")
+  private Boolean recordLog;
+
   @Value("${pw.locator.timeout}")
   private Double locatorTimeout;
 

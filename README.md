@@ -57,8 +57,10 @@ $ mvn allure:report
 ### Allure report attached details
 
 - Full test run log is attached to every test case
+- Full test run console log and network log is attached to every test case
 - Screenshot is attached to every failed test case
 - Video recording is attached to every failed test case
+- Playwright trace recording is attached to every failed test case
 
 ![img_2.png](readme/img_2.png)
 
